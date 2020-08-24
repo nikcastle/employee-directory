@@ -20,7 +20,7 @@ const DataTable = () => {
                 <th
                   className="col"
                   key={name}
-                  style={{ width }}
+                  style={{ width }} //* why double {{ }}
                   onClick={() => {
                     // context.handleSort(name.toLowerCase());
                     context.handleSort(name);

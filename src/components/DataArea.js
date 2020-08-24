@@ -31,11 +31,11 @@ const DataArea = () => {
       currentOrder = "descend";
     }
 
-    const compareFnc = (a, b) => {
+    const sortHeading = (a, b) => {
       if (currentOrder === "ascend") {
         // account for missing values
         if (a[heading] === undefined) {
-          return 1;
+          return 1; //* why return 1 or -1?
         } else if (b[heading] === undefined) {
           return -1;
         }
@@ -45,7 +45,7 @@ const DataArea = () => {
         } else if (heading === "dob") {
           return a[heading].age - b[heading].age;
         } else {
-          return a[heading].localeCompare(b[heading]);
+          return a[heading].localeCompare(b[heading]); //* locale.Compare?
         }
       } else {
         // account for missing values
@@ -60,11 +60,12 @@ const DataArea = () => {
         }else if (heading === "dob") {
           return b[heading].age - a[heading].age;
         }  else {
-          return b[heading].localeCompare(a[heading]);
+          return b[heading].localeCompare(a[heading]); 
         }
       }
     };
-    const sortedUsers = developerState.filteredUsers.sort(compareFnc);
+
+    const sortedUsers = developerState.filteredUsers.sort(sortHeading);
     const updatedHeadings = developerState.headings.map(elem => {
       elem.order = elem.name === heading ? currentOrder : elem.order;
       return elem;
@@ -77,6 +78,7 @@ const DataArea = () => {
     });
   };
 
+  //* how is this filtering the names?
   const handleSearchChange = event => {
     const filter = event.target.value;
     const filteredList = developerState.users.filter(item => {
@@ -103,7 +105,7 @@ const DataArea = () => {
   }, []);
 
   return (
-    <DataAreaContext.Provider
+    <DataAreaContext.Provider //* .Provider?
       value={{ developerState, handleSearchChange, handleSort }}
     >
       <Nav />

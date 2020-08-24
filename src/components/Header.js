@@ -1,12 +1,13 @@
-import React from "react";
+import React from 'react';
+// import "../styles/Header.css";
 
-const Header = () => {
+function Header () {
     return (
-        <div className = "header">
-            <hi>Employee Directory</hi>
-            <p>Click on column heading to filter or enter a search term in the box.</p>
-        </div>
+      <div className="header">
+        <h1>Employee Directory</h1>
+        <p>Click on a heading to filter employees or enter a name in the search box.</p>
+      </div>
     )
-}
+  }
 
 export default Header;

@@ -5,7 +5,7 @@ import DataAreaContext from "../utils/DataAreaContext";
 const DataBody = () => {
   const context = useContext(DataAreaContext);
 
-  function formatDate(date) {
+  function formatDate(date) { //* is date coming from the API?
     const dateArray = date.split("-");
     const year = dateArray[0];
     const month = dateArray[1];
@@ -17,6 +17,7 @@ const DataBody = () => {
 
   return (
     <tbody>
+      {/* is there a better way to write this?  */}
       {context.developerState.filteredUsers[0] !== undefined && context.developerState.filteredUsers[0].name !== undefined ? (
         context.developerState.filteredUsers.map(({ login, name, picture, phone, email, dob }) => {
           return (
