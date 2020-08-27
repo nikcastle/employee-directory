@@ -1,12 +1,12 @@
 import React from "react";
 import SearchName from "./SearchForm.js";
-// import "../styles/Nav.css";
+import "../styles/Navbar.css";
 
-function Nav() {
+function Nav(props) {
   return (
     <nav className="navbar">
         <div className="search-area col-4">
-          <SearchName />
+          <SearchName handleSearchChange={props.handleSearchChange}/>
         </div>
     </nav>
   );

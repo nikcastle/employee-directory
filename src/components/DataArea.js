@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import DataTable from "./DataTable";
 import Nav from "./Navbar";
 import API from "../utils/API";
-// import "../styles/DataArea.css";
+import "../styles/DataArea.css";
 import DataAreaContext from "../utils/DataAreaContext";
 
 const DataArea = () => {
@@ -35,7 +35,7 @@ const DataArea = () => {
       if (currentOrder === "ascend") {
         // account for missing values
         if (a[heading] === undefined) {
-          return 1; //* why return 1 or -1?
+          return 1; 
         } else if (b[heading] === undefined) {
           return -1;
         }
@@ -45,7 +45,7 @@ const DataArea = () => {
         } else if (heading === "dob") {
           return a[heading].age - b[heading].age;
         } else {
-          return a[heading].localeCompare(b[heading]); //* locale.Compare?
+          return a[heading].localeCompare(b[heading]); 
         }
       } else {
         // account for missing values
@@ -64,7 +64,7 @@ const DataArea = () => {
         }
       }
     };
-
+    
     const sortedUsers = developerState.filteredUsers.sort(sortHeading);
     const updatedHeadings = developerState.headings.map(elem => {
       elem.order = elem.name === heading ? currentOrder : elem.order;
@@ -78,15 +78,13 @@ const DataArea = () => {
     });
   };
 
-  //* how is this filtering the names?
+  
   const handleSearchChange = event => {
     const filter = event.target.value;
     const filteredList = developerState.users.filter(item => {
       let values = item.name.first.toLowerCase() + " " + item.name.last.toLowerCase();
-      console.log(filter, values)
-    if(values.indexOf(filter.toLowerCase()) !== -1){
-      return item
-    };
+      
+      return values.includes(filter.toLowerCase())
     });
 
     setDeveloperState({ ...developerState, filteredUsers: filteredList });
@@ -95,7 +93,7 @@ const DataArea = () => {
   ///https://stackoverflow.com/questions/53120972/how-to-call-loading-function-with-react-useeffect-only-once
   useEffect(() => {
     API.getUsers().then(results => {
-      console.log(results.data.results);
+      // console.log(results.data.results);
       setDeveloperState({
         ...developerState,
         users: results.data.results,
@@ -105,14 +103,12 @@ const DataArea = () => {
   }, []);
 
   return (
-    <DataAreaContext.Provider //* .Provider?
-      value={{ developerState, handleSearchChange, handleSort }}
-    >
-      <Nav />
+    <>
+      <Nav handleSearchChange={handleSearchChange}/>
       <div className="data-area">
-        {developerState.filteredUsers.length > 0 ? <DataTable /> : <div></div>}
+        {developerState.filteredUsers.length > 0 ? <DataTable developerState = {developerState} handleSort={handleSort}/> : <div></div>}
       </div>
-    </DataAreaContext.Provider>
+    </>
   );
 };
 

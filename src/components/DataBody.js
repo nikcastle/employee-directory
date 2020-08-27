@@ -1,9 +1,8 @@
-import React, { useContext } from "react";
-// import "../styles/DataBody.css";
-import DataAreaContext from "../utils/DataAreaContext";
+import React from "react"
 
-const DataBody = () => {
-  const context = useContext(DataAreaContext);
+
+const DataBody = (props) => {
+  
 
   function formatDate(date) { //* is date coming from the API?
     const dateArray = date.split("-");
@@ -18,14 +17,14 @@ const DataBody = () => {
   return (
     <tbody>
       {/* is there a better way to write this?  */}
-      {context.developerState.filteredUsers[0] !== undefined && context.developerState.filteredUsers[0].name !== undefined ? (
-        context.developerState.filteredUsers.map(({ login, name, picture, phone, email, dob }) => {
+      {props.developerState.filteredUsers[0] !== undefined && props.developerState.filteredUsers[0].name !== undefined ? (
+        props.developerState.filteredUsers.map(({ login, name, picture, phone, email, dob }) => {
           return (
             <tr key={login.uuid}>
               <td data-th="Image" className="align-middle">
                 <img
-                  src={picture.medium}
-                  alt={"profile image for " + name.first + " " + name.last}
+                  src={picture.large}
+                  alt={`Face of ${name.first} ${name.last}`}
                   className="img-responsive"
                 />
               </td>

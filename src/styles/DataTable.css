@@ -1,0 +1,19 @@
+.datatable .col {
+    cursor: pointer;
+    padding-bottom: 20px;
+    text-decoration: underline;
+    text-transform: capitalize;
+
+  }
+  
+  .datatable .col .pointer:after {
+    font-size: 10px;
+    content: "";
+    margin-right: 18px;
+  }
+  
+  .datatable .col .pointer:hover:after {
+    font-size: 10px;
+    content: "🔻";
+    margin-right: 0;
+  }

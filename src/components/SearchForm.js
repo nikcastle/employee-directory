@@ -1,9 +1,7 @@
-import React, { useContext } from "react";
-// import "../styles/SearchName.css";
-import DataAreaContext from "../utils/DataAreaContext";
+import React from "react";
+// import DataAreaContext from "../utils/DataAreaContext";
 
-const SearchName = () => {
-  const context = useContext(DataAreaContext);
+const SearchName = (props) => {
 
   return (
     <div className="searchbox">
@@ -18,7 +16,7 @@ const SearchName = () => {
           type="search"
           placeholder="Enter a Name"
           aria-label="Search"
-          onChange={e => context.handleSearchChange(e)}
+          onChange={e => props.handleSearchChange(e)}
         />
         </div>
     </div>
